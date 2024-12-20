@@ -7,24 +7,57 @@ const Otp = ({ otpLength = 4 }) => {
   console.log(otpFields);
   console.log(ref);
 
+  const handleChange = (e, index) => {
+    const value = e.target.value;
+    if (isNaN(value)) return;
+
+    const newOTP = [...otpFields];
+    newOTP[index] = value;
+    setOtpFields(newOTP);
+
+    if (value && index < otpFields.length - 1) {
+      ref.current[index + 1].focus();
+    }
+  };
+
   const handleKeyDown = (e, index) => {
     const key = e.key;
 
-    const copyPrevOtp = [...otpFields];
+    if (key === "ArrowRight") {
+      e.preventDefault();
+      if (index + 1 < otpFields.length) {
+        ref.current[index + 1].focus();
+      }
+    }
 
-    copyPrevOtp[index] = key;
-    console.log(copyPrevOtp);
-    ref.current[index + 1].focus();
-    setOtpFields(copyPrevOtp);
+    if (key === "ArrowLeft") {
+      e.preventDefault();
+      if (index > 0) {
+        ref.current[index - 1].focus();
+      }
+    }
+
+    if (key === "Backspace" && !otpFields[index]) {
+      const newOTP = [...otpFields];
+      newOTP[index] = "";
+      setOtpFields(newOTP);
+
+      if (index > 0) {
+        ref.current[index - 1].focus();
+      }
+    }
   };
+
   return (
     <div>
       {otpFields.map((value, index) => {
         return (
           <input
             key={index}
-            type="number"
+            maxLength={1}
+            type="text"
             ref={(currentInput) => (ref.current[index] = currentInput)}
+            onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
             value={value}
           />
