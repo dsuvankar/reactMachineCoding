@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+img {
+  height: 400px;
+  width: fit-content;
+}
+
+span {
+  position: absolute;
+  font-size: 0.5rem;
+  cursor: pointer;
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.left-arrow {
+  left: 5%;
+}
+
+.right-arrow {
+  right: 5%;
+}

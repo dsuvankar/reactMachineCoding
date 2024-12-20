@@ -37,7 +37,7 @@ const Otp = ({ otpLength = 4 }) => {
       }
     }
 
-    if (key === "Backspace" && !otpFields[index]) {
+    if (key === "Backspace") {
       const newOTP = [...otpFields];
       newOTP[index] = "";
       setOtpFields(newOTP);
