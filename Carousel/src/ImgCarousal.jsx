@@ -24,11 +24,20 @@ const ImgCarousal = () => {
       }
     });
   };
+  const startInterval = () => {
+    console.log("Starting interval");
+    ref.current = setInterval(handleNext, 1000);
+  };
+
+  const stopInterval = () => {
+    console.log("Stopping interval");
+    clearInterval(ref.current);
+  };
 
   useEffect(() => {
-    ref.current = setInterval(handleNext, 1000);
+    startInterval();
 
-    return () => clearInterval(ref.current);
+    return () => stopInterval();
   }, []);
 
   return (
@@ -37,8 +46,14 @@ const ImgCarousal = () => {
         &#8592;
       </span>
       <img
-        onMouseEnter={() => clearInterval(ref.current)}
-        onMouseLeave={() => setInterval(handleNext, 1000)}
+        onMouseEnter={() => {
+          console.log("mouse entered");
+          stopInterval();
+        }}
+        onMouseLeave={() => {
+          console.log("Mouse left");
+          startInterval();
+        }}
         src={data[index].download_url}
         alt=""
       />
