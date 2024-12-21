@@ -25,12 +25,10 @@ const ImgCarousal = () => {
     });
   };
   const startInterval = () => {
-    console.log("Starting interval");
     ref.current = setInterval(handleNext, 1000);
   };
 
   const stopInterval = () => {
-    console.log("Stopping interval");
     clearInterval(ref.current);
   };
 
@@ -47,11 +45,9 @@ const ImgCarousal = () => {
       </span>
       <img
         onMouseEnter={() => {
-          console.log("mouse entered");
           stopInterval();
         }}
         onMouseLeave={() => {
-          console.log("Mouse left");
           startInterval();
         }}
         src={data[index].download_url}
