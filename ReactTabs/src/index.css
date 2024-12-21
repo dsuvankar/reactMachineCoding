@@ -1,0 +1,15 @@
+.tab_container {
+  display: flex;
+  gap: 2px;
+}
+
+.tabs_content {
+  height: 16rem;
+  width: 16rem;
+  border: 2px solid black;
+  border-top: none;
+}
+
+.active {
+  border-bottom: none;
+}
